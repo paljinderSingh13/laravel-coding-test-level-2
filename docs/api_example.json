@@ -1,0 +1,71 @@
+1) Get Users
+    Retrieves a list of all users in the system.
+    In url ADMIN is Role
+
+    Request
+    Method: GET
+    URL: "http://127.0.0.1:8000/api/v1/users/ADMIN"
+
+    Response
+    Status Code: 200 OK
+    Body: {
+    "users": [
+        {
+            "id": "0ee2c1bf-5790-40d6-8eb1-3697f44b95d0",
+            "name": "TM 1",
+            "username": "TM",
+            "email": "tm@gmail.com",
+            "email_verified_at": null,
+            "created_at": "2023-04-11T08:48:27.000000Z",
+            "updated_at": "2023-04-11T08:48:27.000000Z",
+            "role": "TEAM_MEMBER"
+        }
+    ]
+}
+
+2) Get Single Users
+    Retrieves a  users in the system.
+    In url ADMIN is Role
+
+    Request
+    Method: GET
+    URL: "http://127.0.0.1:8000/api/v1/users/7234d21c-aa56-40b0-a878-aebfc4e3e4a9/ADMIN",
+
+
+    Response
+    Status Code: 200 OK
+    Body: {
+    "user": {
+        "id": "0ee2c1bf-5790-40d6-8eb1-3697f44b95d0",
+        "name": "TM 1",
+        "username": "TM",
+        "email": "tm@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2023-04-11T08:48:27.000000Z",
+        "updated_at": "2023-04-11T08:48:27.000000Z",
+        "role": "TEAM_MEMBER"
+    }
+}
+
+3) Put idempotent  update User
+    Update a users info in the system.
+    In url ADMIN is Role
+
+    Request
+    Method: put
+    URL: "http://127.0.0.1:8000/api/v1/users/7fa57b3f-764e-4220-b7c7-8176103468c9/ADMIN",
+    Response
+    Status Code: 200 OK
+    Body: {
+    "message": "User updated successfully",
+    "data": {
+        "id": "0ee2c1bf-5790-40d6-8eb1-3697f44b95d0",
+        "name": "TM 1",
+        "username": "TM",
+        "email": "tm@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2023-04-11T08:48:27.000000Z",
+        "updated_at": "2023-04-11T08:48:27.000000Z",
+        "role": "TEAM_MEMBER"
+    }
+}
