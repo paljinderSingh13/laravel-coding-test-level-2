@@ -22,30 +22,34 @@ use App\Http\Controllers\Api\TaskController;
 // });
 
 Route::prefix('v1')->group(function () {
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/users', 'index');
-        Route::get('/users/{user_id}', 'show');
-        Route::put('/users/{user_id}', 'idempotent_update');
-        Route::patch('/users/{user_id}', 'update');
-        Route::delete('/users/{user_id}', 'destroy');
-        Route::post('/users', 'store');
+    Route::controller(UserController::class)->middleware('checkRole:ADMIN')->group(function () {
+        Route::get('/users/{role}', 'index');
+        Route::get('/users/{user_id}/{role}', 'show');
+        Route::put('/users/{user_id}/{role}', 'idempotent_update');
+        Route::patch('/users/{user_id}/{role}', 'update');
+        Route::delete('/users/{user_id}/{role}', 'destroy');
+        Route::post('/users/{role}', 'store');
     });
-    Route::controller(ProjectController::class)->group(function () {
-        Route::get('/project', 'index');
-        Route::get('/project/{project_id}', 'show');
-        Route::put('/project/{project_id}', 'idempotent_update');
-        Route::patch('/project/{project_id}', 'update');
-        Route::delete('/project/{project_id}', 'destroy');
-        Route::post('/project', 'store');
-        Route::post('/project-assign-users', 'assign_user');
+    Route::middleware('checkRole:PRODUCT_OWNER')->group(function () {
+        Route::controller(ProjectController::class)->group(function () {
+            Route::get('/project/{role}', 'index');
+            Route::get('/project/{project_id}/{role}', 'show');
+            Route::put('/project/{project_id}/{role}', 'idempotent_update');
+            Route::patch('/project/{project_id}/{role}', 'update');
+            Route::delete('/project/{project_id}/{role}', 'destroy');
+            Route::post('/project/{role}', 'store');
+            Route::post('/project-assign-users/{role}', 'assign_user');
+        });
+
+        Route::controller(TaskController::class)->group(function () {
+            Route::get('/tasks/{role}', 'index');
+            Route::get('/task/{task_id}/{role}', 'show');
+            Route::patch('/task/{task_id}/{role}', 'update');
+            Route::delete('/task/{task_id}/{role}', 'destroy');
+            Route::post('/task/{role}', 'store');
+        });
     });
-    Route::controller(TaskController::class)->group(function () {
-        Route::get('/tasks', 'index');
-        Route::get('/task/{task_id}', 'show');
-        Route::put('/task-status-change/{task_id}', 'idempotent_update');
-        Route::patch('/task/{task_id}', 'update');
-        Route::delete('/task/{task_id}', 'destroy');
-        Route::post('/task', 'store');
-    });
+    //Route::get('/users/{user}', [UserController::class, 'show']);
+        Route::put('/task-status-change/{task_id}/{role}', [TaskController::class,'idempotent_update'])->middleware('checkRole:TEAM_MEMBER');
 
 });

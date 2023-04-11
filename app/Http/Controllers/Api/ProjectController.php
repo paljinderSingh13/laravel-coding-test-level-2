@@ -115,8 +115,17 @@ class ProjectController extends Controller
         $project->delete();
         return response()->json(['message' => 'Project delete successfully'], 204);
     }
+     /**
+     * Assign the specified resource to Project.
+     *
+      * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function assign_user(Request $request){
         $project = Project::find($request->project_id);
+        if(Project::find($request->project_id)->users->count()>0){
+            return response()->json(['error' => 'Team Member already associate to project'], 404);
+        }
         $project->users()->attach($request->user_ids);
         $project->save();
         return response()->json([

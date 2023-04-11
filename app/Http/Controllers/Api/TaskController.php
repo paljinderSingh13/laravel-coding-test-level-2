@@ -38,6 +38,7 @@ class TaskController extends Controller
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         }
+
        $project_user_exist = Project::find($request->project_id)->users;
         if($project_user_exist){
            $data =  $project_user_exist->where('id',$request->user_id);
@@ -75,7 +76,12 @@ class TaskController extends Controller
     public function idempotent_update(Request $request, $id)
         {
             $task = Task::findOrFail($id);
-
+            $status_data = ['NOT_STARTED', 'IN_PROGRESS', 'READY_FOR_TEST', 'COMPLETED'];
+            if(!in_array($request->input('status'),$status_data)){
+                return response()->json(['error' => 'Status is not valid'], 404);
+            }
+            $task->title = $request->input('title');
+            $task->description = $request->input('description');
             $task->status = $request->input('status');
             $task->save();
 
