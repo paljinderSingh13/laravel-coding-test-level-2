@@ -132,4 +132,22 @@ class ProjectController extends Controller
             'message' => 'Assign user to project  successfully',
         ], 201);
     }
+    /**
+     * projects pagnation  search sort sortBy sortDirection  the specified  to Project.
+     *
+      * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function projects(Request $request){
+        $query = Project::query();
+        if(!empty($request['search'])){
+            $query->where('name', 'LIKE', '%'.$request['search'].'%');
+        }
+        $page = $request['pageIndex'] ?? 0;
+        $pageSize = $request['pageSize'] ?? 3;
+        $sortBy = $request['sortBy'] ?? 'name';
+        $sortDirection = $request['sortDirection'] ?? 'asc';
+        $data = $query->orderBy($sortBy, $sortDirection)->paginate($pageSize, ['*'], 'pageIndex', $page);
+        return response()->json(['data' => $data], 200);
+    }
 }

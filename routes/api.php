@@ -49,7 +49,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/task/{role}', 'store');
         });
     });
-    //Route::get('/users/{user}', [UserController::class, 'show']);
         Route::put('/task-status-change/{task_id}/{role}', [TaskController::class,'idempotent_update'])->middleware('checkRole:TEAM_MEMBER');
+        Route::get('/projects', [ProjectController::class,'projects']);
 
 });
