@@ -130,6 +130,6 @@ class ProjectController extends Controller
         $project->save();
         return response()->json([
             'message' => 'Assign user to project  successfully',
-        ], 200);
+        ], 201);
     }
 }
