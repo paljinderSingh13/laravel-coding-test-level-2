@@ -38,6 +38,7 @@ class TaskController extends Controller
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
         }
+
        $project_user_exist = Project::find($request->project_id)->users;
         if($project_user_exist){
            $data =  $project_user_exist->where('id',$request->user_id);
@@ -76,6 +77,14 @@ class TaskController extends Controller
         {
             $task = Task::findOrFail($id);
 
+            if($request->input('team_member_id') != $task->user_id){
+                return response()->json(['error' => 'Team member can only change the status of a task assigned to themselves'], 404);
+            }
+            $status_data = ['NOT_STARTED', 'IN_PROGRESS', 'READY_FOR_TEST', 'COMPLETED'];
+            if(!in_array($request->input('status'),$status_data)){
+                return response()->json(['error' => 'Status is not valid'], 404);
+            }
+
             $task->status = $request->input('status');
             $task->save();
 
@@ -100,12 +109,12 @@ class TaskController extends Controller
             return response()->json(['error' => 'task not found'], 404);
         }
 
-        try {
-            $this->validate($request, [
-                'name' => 'required|unique:projects',
-            ]);
-        } catch (ValidationException $e) {
-            return response()->json(['errors' => $e->errors()], 422);
+        if($request->input('team_member_id') != $task->user_id){
+            return response()->json(['error' => 'Team member can only change the status of a task assigned to themselves'], 404);
+        }
+        $status_data = ['NOT_STARTED', 'IN_PROGRESS', 'READY_FOR_TEST', 'COMPLETED'];
+        if(!in_array($request->input('status'),$status_data)){
+            return response()->json(['error' => 'Status is not valid'], 404);
         }
 
         $task->update($request->all());

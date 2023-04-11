@@ -115,12 +115,39 @@ class ProjectController extends Controller
         $project->delete();
         return response()->json(['message' => 'Project delete successfully'], 204);
     }
+     /**
+     * Assign the specified resource to Project.
+     *
+      * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function assign_user(Request $request){
         $project = Project::find($request->project_id);
+        if(Project::find($request->project_id)->users->count()>0){
+            return response()->json(['error' => 'Team Member already associate to project'], 404);
+        }
         $project->users()->attach($request->user_ids);
         $project->save();
         return response()->json([
             'message' => 'Assign user to project  successfully',
-        ], 200);
+        ], 201);
+    }
+    /**
+     * projects pagnation  search sort sortBy sortDirection  the specified  to Project.
+     *
+      * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function projects(Request $request){
+        $query = Project::query();
+        if(!empty($request['search'])){
+            $query->where('name', 'LIKE', '%'.$request['search'].'%');
+        }
+        $page = $request['pageIndex'] ?? 0;
+        $pageSize = $request['pageSize'] ?? 3;
+        $sortBy = $request['sortBy'] ?? 'name';
+        $sortDirection = $request['sortDirection'] ?? 'asc';
+        $data = $query->orderBy($sortBy, $sortDirection)->paginate($pageSize, ['*'], 'pageIndex', $page);
+        return response()->json(['data' => $data], 200);
     }
 }

@@ -1,0 +1,630 @@
+{
+	"info": {
+		"_postman_id": "89dc8db4-2c65-4786-afa9-d9f048539a05",
+		"name": "Code Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22000178"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/ADMIN",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"ADMIN"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Single User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/7234d21c-aa56-40b0-a878-aebfc4e3e4a9/ADMIN",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"7234d21c-aa56-40b0-a878-aebfc4e3e4a9",
+								"ADMIN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Single User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/7fa57b3f-764e-4220-b7c7-8176103468c9/ADMIN",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"7fa57b3f-764e-4220-b7c7-8176103468c9",
+								"ADMIN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put idempotent  update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"PO 3\",\n    \"username\": \"PO 2\",\n    \"email\": \"PO@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/7fa57b3f-764e-4220-b7c7-8176103468c9/ADMIN",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"7fa57b3f-764e-4220-b7c7-8176103468c9",
+								"ADMIN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch  update User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"PO 4\",\n    \"username\": \"po4\",\n    \"email\": \"PO@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/7fa57b3f-764e-4220-b7c7-8176103468c9/ADMIN",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"7fa57b3f-764e-4220-b7c7-8176103468c9",
+								"ADMIN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TM 1\",\n    \"username\": \"TM\",\n    \"email\": \"tm@gmail.com\",\n    \"password\":\"123456\",\n    \"role\":\"TEAM_MEMBER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/users/ADMIN",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"ADMIN"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "Get Project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/project/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Project c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/project/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single Project",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/project/3ec1d728-b8de-4bb5-8bc7-5f9bd11cb6e0/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"3ec1d728-b8de-4bb5-8bc7-5f9bd11cb6e0",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Idemopotent project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Project Au\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/project/e6d6ce5d-4fe4-474d-ab29-4896f370cbb3/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"e6d6ce5d-4fe4-474d-ab29-4896f370cbb3",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project UPDATE",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Project Au12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/project/e6d6ce5d-4fe4-474d-ab29-4896f370cbb3/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"e6d6ce5d-4fe4-474d-ab29-4896f370cbb3",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delece Project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/project/3a1e3eb9-c53a-4a64-9ef9-2f1338113577/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"3a1e3eb9-c53a-4a64-9ef9-2f1338113577",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Team to project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_id\":\"f53c63c4-32f2-48ce-9f6f-88aa402590b0\",\n    \"user_ids\":[\"0ee2c1bf-5790-40d6-8eb1-3697f44b95d0\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/project-assign-users/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"project-assign-users",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "project search pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"search\":\"A\",\n   \"pageSize\":2,\n   \"pageIndex\":1,\n   \"sortBy\":\"name\",\n   \"sortDirection\":\"desc\"\n    \n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/projects",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "create task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"task d\",\n    \"description\":\"desc\",\n    \"user_id\":\"0ee2c1bf-5790-40d6-8eb1-3697f44b95d0\",\n    \"project_id\":\"f53c63c4-32f2-48ce-9f6f-88aa402590b0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/task/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"task",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change task status Team member only",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"team_member_id\":\"7234d21c-aa56-40b0-a878-aebfc4e3e4a9\",\n    \"status\":\"IN_PROGRESS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/task-status-change/51138701-98d1-4215-9034-0d974fbc2f20/TEAM_MEMBER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"task-status-change",
+								"51138701-98d1-4215-9034-0d974fbc2f20",
+								"TEAM_MEMBER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/tasks/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"tasks",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/task/bdb00bb9-94d7-4315-a193-8d33c2f9ac6c/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"task",
+								"bdb00bb9-94d7-4315-a193-8d33c2f9ac6c",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/task/57861ddc-780e-4805-b14a-9a28e7893feb/PRODUCT_OWNER",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"task",
+								"57861ddc-780e-4805-b14a-9a28e7893feb",
+								"PRODUCT_OWNER"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
